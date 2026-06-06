@@ -1,4 +1,4 @@
 window.__APP_CONFIG__ = {
-  BASE_URL: 'http://localhost:8080',
+  BASE_URL: '/api',
   APP_VERSION: '26.1-A',
 }

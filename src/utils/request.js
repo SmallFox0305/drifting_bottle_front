@@ -2,7 +2,6 @@ import { createAlova } from 'alova'
 import GlobalFetch from 'alova/fetch'
 
 const baseURL = window.__APP_CONFIG__?.BASE_URL
-
 export const alova = createAlova({
   baseURL,
   requestAdapter: GlobalFetch(),
