@@ -87,6 +87,7 @@ const emit = defineEmits(['dropSuccess'])
         gap: 2rem;
 
         &--button {
+            cursor: pointer;
             width: 10rem;
             font-size: 1.8rem;
             padding: .8rem 0;

@@ -70,10 +70,13 @@ $color-10: #33691e;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   &__main {
+    width: 100%;
     height: 100%;
-    background: url('@/assets/imgs/bgc.png');
+    background: url('@/assets/imgs/bgc.png') no-repeat;
+    background-size: cover;
     background-position: center center;
   }
 
@@ -82,8 +85,8 @@ $color-10: #33691e;
     justify-content: space-evenly;
     align-items: center;
     position: absolute;
-    width: 100%;
-    background-color: $color-3;
+    gap: 1rem;
+    width: 60%;
     bottom: 0;
 
     &--button {
@@ -102,7 +105,7 @@ $color-10: #33691e;
 
       &:hover {
         transform: scale(1.1);
-        box-shadow: 0 0 .2rem .3rem darken($color-7, $amount: 0);
+        box-shadow: 0 0 .2rem .3rem $color-7;
       }
     }
   }
@@ -143,5 +146,6 @@ $color-10: #33691e;
 
 html {
   font-size: 62.5%;
+  overflow-y: hidden;
 }
 </style>
