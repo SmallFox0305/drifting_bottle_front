@@ -1,8 +1,10 @@
 import { createAlova } from 'alova'
 import GlobalFetch from 'alova/fetch'
 
+const baseURL = window.__APP_CONFIG__?.BASE_URL
+
 export const alova = createAlova({
-  baseURL: 'http://localhost:8080',
+  baseURL,
   requestAdapter: GlobalFetch(),
   cacheFor: false,
   responded: {
