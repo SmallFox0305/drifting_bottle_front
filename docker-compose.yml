@@ -1,0 +1,47 @@
+services:
+  backend:
+    container_name: drifting-bottle-backend
+    image: smallfox0305/drifting-bottle-backend:latest
+    volumes:
+      - ./config:/app/config
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+  front:
+    container_name: drifting-bottle-front
+    image: smallfox0305/drifting-bottle-front:latest
+    volumes:
+      - /mnt/TOMORE_GMINI_1T/My_File/Web/DriftingBottle/conf:/etc/nginx/conf.d/
+      - /mnt/TOMORE_GMINI_1T/My_File/Web/DriftingBottle/ssl:/etc/nginx/ssl/
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+  mysql:
+    container_name: drifting-bottle-mysql
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_DATABASE: DriftingBottle
+      TZ: Asia/Shanghai
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - drifting-bottle-mysql:/var/lib/mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-p123456" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  drifting-bottle-mysql:
+
+networks:
+  default:
+    name: drifting-bottle
+    driver: bridge
